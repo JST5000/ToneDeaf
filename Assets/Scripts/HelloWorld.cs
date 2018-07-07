@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HelloWorld : MonoBehaviour {
 
 
-
+    public Text text;
+    public Text text2;
     public static bool Guessing = false;
     public static string LastNote = "GG";
 	// Use this for initialization
 	void Start () {
-		
+        toggleGuessing();
 	}
 	
 	// Update is called once per frame
@@ -49,26 +51,43 @@ public class HelloWorld : MonoBehaviour {
             { // if some key pressed...
               //AudioClip Clip = (AudioClip)Resources.Load("Assets//Scripts//middle_c.mp3");
               //AudioSource midC = GetComponent<AudioSource>();
-              //GetComponent<AudioSource>().pitch = Mathf.Pow(2, (0f + transpose) / 12.0f);
-              // GetComponent<AudioSource>().Play(0);
-                Debug.Log("Played once");
-                //Thread.Sleep(3000);
                 //GetComponent<AudioSource>().Stop();
-                Thread.Sleep(300);
+                //Thread.Sleep(300);
                 GetComponent<AudioSource>().pitch = Mathf.Pow(2, (note + transpose) / 12.0f);
                 GetComponent<AudioSource>().Play(0);
-                Thread.Sleep(3000);
                 //GetComponent<AudioSource>().Stop();
             }
             LastNote = s;
             Debug.Log("Finished");
         } else
         {
-            if (s.Equals(LastNote)) Debug.Log("YASSSSS");
-            else Debug.Log("FAIL");
+            if (s.Equals(LastNote))
+            {
+                Debug.Log("YASSSSS");
+                text2.text = "RIGHT";
+            }
+            else
+            {
+                Debug.Log("FAIL");
+                text2.text = "WRONG";
+            }
         }
 
         Guessing = !Guessing;
+        toggleGuessing();
+    }
+
+
+    public void toggleGuessing()
+    {
+        if (Guessing)
+        {
+            text.text = "GUESS";
+           // GetComponent<AudioSource>().pitch = Mathf.Pow(2, (0f -4) / 12.0f);
+           // GetComponent<AudioSource>().Play(0);
+           // Debug.Log("Played once");
+        }
+        else text.text = "Choose a note";
     }
 
     enum Note { C, Db, D, Eb, F, Gb, G, Ab, A, Bb, B };
