@@ -31,23 +31,23 @@ public class HelloWorld : MonoBehaviour {
     public void PlayANote(string s)
     {
         float transpose = -4;  // transpose in semitones
-        var note = -1; // invalid value to detect when note is pressed
+        var note = 0; // invalid value to detect when note is pressed
         if (s.Equals("C")) note = 0;  // C
 
         if (note >= 0)
         { // if some key pressed...
             //AudioClip Clip = (AudioClip)Resources.Load("Assets//Scripts//middle_c.mp3");
             //AudioSource midC = GetComponent<AudioSource>();
-            GetComponent<AudioSource>().pitch = Mathf.Pow(2, (0f + transpose) / 12.0f);
-            GetComponent<AudioSource>().Play();
+            //GetComponent<AudioSource>().pitch = Mathf.Pow(2, (0f + transpose) / 12.0f);
+           // GetComponent<AudioSource>().Play(0);
 			Debug.Log ("Played once");
-            Thread.Sleep(1000);
-            GetComponent<AudioSource>().Stop();
+            //Thread.Sleep(3000);
+            //GetComponent<AudioSource>().Stop();
             Thread.Sleep(300);
             GetComponent<AudioSource>().pitch = Mathf.Pow(2, (note + transpose) / 12.0f);
-            GetComponent<AudioSource>().Play();
-            Thread.Sleep(1000);
-            GetComponent<AudioSource>().Stop();
+            GetComponent<AudioSource>().Play(0);
+            Thread.Sleep(3000);
+            //GetComponent<AudioSource>().Stop();
         }
 		Debug.Log ("Finished");
     }
