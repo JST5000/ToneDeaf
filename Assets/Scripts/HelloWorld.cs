@@ -41,11 +41,16 @@ public class HelloWorld : MonoBehaviour {
             float transpose = -4;  // transpose in semitones
             var note = 0; // invalid value to detect when note is pressed
             if (s.Equals("C")) note = 0;  // C
+            if (s.Equals("C#")) note = 1;  // C#
             if (s.Equals("D")) note = 2;  // D
+            if (s.Equals("D#")) note = 3;  // D#
             if (s.Equals("E")) note = 4;  // E
             if (s.Equals("F")) note = 5;  // F
+            if (s.Equals("F#")) note = 6;  // F#
             if (s.Equals("G")) note = 7;  // G
+            if (s.Equals("G#")) note = 8;  // G#
             if (s.Equals("A")) note = 9;  // A
+            if (s.Equals("A#")) note = 10;  // A#
             if (s.Equals("B")) note = 11; // B
             if (note >= 0)
             { // if some key pressed...
@@ -82,6 +87,7 @@ public class HelloWorld : MonoBehaviour {
     {
         if (Guessing)
         {
+            text2.text = "";
             text.text = "GUESS";
            // GetComponent<AudioSource>().pitch = Mathf.Pow(2, (0f -4) / 12.0f);
            // GetComponent<AudioSource>().Play(0);
