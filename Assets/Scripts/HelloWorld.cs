@@ -28,7 +28,7 @@ public class HelloWorld : MonoBehaviour {
     
 
     // Update is called once per frame
-    void PlayANote(string s)
+    public void PlayANote(string s)
     {
         float transpose = -4;  // transpose in semitones
         var note = -1; // invalid value to detect when note is pressed
@@ -36,18 +36,20 @@ public class HelloWorld : MonoBehaviour {
 
         if (note >= 0)
         { // if some key pressed...
-            AudioClip Clip = (AudioClip)Resources.Load("Assets//Scripts//midC.midi");
-            AudioSource midC = GetComponent<AudioSource>();
-            midC.pitch = Mathf.Pow(2, (0f + transpose) / 12.0f);
-            midC.Play();
+            //AudioClip Clip = (AudioClip)Resources.Load("Assets//Scripts//middle_c.mp3");
+            //AudioSource midC = GetComponent<AudioSource>();
+            GetComponent<AudioSource>().pitch = Mathf.Pow(2, (0f + transpose) / 12.0f);
+            GetComponent<AudioSource>().Play();
+			Debug.Log ("Played once");
             Thread.Sleep(1000);
-            midC.Stop();
+            GetComponent<AudioSource>().Stop();
             Thread.Sleep(300);
-            midC.pitch = Mathf.Pow(2, (note + transpose) / 12.0f);
-            midC.Play();
+            GetComponent<AudioSource>().pitch = Mathf.Pow(2, (note + transpose) / 12.0f);
+            GetComponent<AudioSource>().Play();
             Thread.Sleep(1000);
-            midC.Stop();
+            GetComponent<AudioSource>().Stop();
         }
+		Debug.Log ("Finished");
     }
 
     enum Note { C, Db, D, Eb, F, Gb, G, Ab, A, Bb, B };
